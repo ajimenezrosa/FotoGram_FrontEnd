@@ -107,3 +107,24 @@ export class ComponentsModule { }
 
 ~~~
 
+# postComponents.html Disenos Multicolumnas.
+
+~~~typescript
+<ion-grid>
+      <ion-row >
+            <ion-col  size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"
+            *ngFor="let post of posts">
+            <app-post 
+                  [post]="post" ></app-post>
+            
+            </ion-col>
+      </ion-row>
+</ion-grid>
+~~~
+
+Este codigo nos permite hacer un componente adaptable a los diferentes tipos de pantallas
+
+lo cual permite que nuestra aplicacion se adapte a los diferentes componentes.
+
+-------
+
