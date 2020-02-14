@@ -78,3 +78,32 @@ como podemos notar el objeto que retorna sera de tipo ***RespuestaPosts***
 esto para poder monejar los objetos que retorna de una forma mas facil y segura.123
 
 ---------
+
+### Este es el Modulo de components.module.ts en el mismo presentamos los componentes que fueron declarados y exportados para que nuestro modulo pudiera funcionar.123
+
+~~~typescript
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PostsComponent } from './posts/posts.component';
+import { PostComponent } from './post/post.component';
+import { IonicModule } from '@ionic/angular';
+
+
+
+@NgModule({
+  declarations: [
+    PostsComponent,
+    PostComponent
+  ],
+  exports: [
+    PostsComponent,
+  ],
+  imports: [
+    CommonModule,
+    IonicModule
+  ]
+})
+export class ComponentsModule { }
+
+~~~
+
