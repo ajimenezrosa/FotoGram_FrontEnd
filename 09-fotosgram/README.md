@@ -32,3 +32,48 @@ export class PostsService {
   }
 }
 ~~~
+
+en este servicio podemos ver que llamamos el BackEnd que realizamos anteriormente.
+
+esto retornara un archivo .json el cual consumiremos en nuestra aplicacion de FrontEnd
+
+---
+
+# Debemos hacer la implementacion de las Interfaces.
+
+### las interfaces que mostramos a continuacion son creadas a partir de las respuestas a nuestro servico de BackEnd
+
+
+~~~typescript
+export interface RespuestaPosts {
+  ok: boolean;
+  pagina: number;
+  posts: Post[];
+}
+
+export interface Post {
+  imgs?: string[];
+  _id?: string;
+  mensaje?: string;
+  coords?: string;
+  usuario?: Usuario;
+  created?: string;
+}
+
+export interface Usuario {
+  avatar?: string;
+  _id?: string;
+  nombre?: string;
+  email?: string;
+ }
+~~~
+
+modificamos el servicos e hicimos que el objeto que nos retorna sea de tipos respuesta
+
+~~~typescript
+return this.http.get<RespuestaPosts>(`${ url }/post/?pagina=${ this.paginaPosts }`);
+~~~
+como podemos notar el objeto que retorna sera de tipo ***RespuestaPosts***
+
+esto para poder monejar los objetos que retorna de una forma mas facil y segura.123
+

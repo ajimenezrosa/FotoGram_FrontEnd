@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { RespuestaPosts } from '../interfaces/interfaces';
 
 const url = environment.URL;
 
@@ -17,7 +18,7 @@ export class PostsService {
   getPosts() {
 
     this.paginaPosts++;
-    return this.http.get(`${ url }/post/?pagina=${ this.paginaPosts }`);
+    return this.http.get<RespuestaPosts>(`${ url }/post/?pagina=${ this.paginaPosts }`);
   }
 
 
