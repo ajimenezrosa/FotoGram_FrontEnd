@@ -15,16 +15,18 @@
 
 </ion-item>
 
-    <ion-slides>
-        <ion-slide>
-            <img src="../../../assets/perro-1.jpg" alt="">
+    <ion-slides >
+        <ion-slide class="image-slide"
+               [style]=" img1 | domSanitizer" >
         </ion-slide>
-        <ion-slide>
-            <img src="../../../assets/perro-2.jpg" alt="">
+        <ion-slide class="image-slide"
+               [style]=" img2 | domSanitizer" >
         </ion-slide>
-        <ion-slide>
-            <img src="../../../assets/perro-3.jpg" alt="">
+        <ion-slide class="image-slide"
+               [style]=" img2 | domSanitizer" >
         </ion-slide>
+
+
     </ion-slides>
 
   <!--mapas-->
