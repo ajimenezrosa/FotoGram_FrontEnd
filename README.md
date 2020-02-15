@@ -288,8 +288,8 @@ export class DomSanitizerPipe implements PipeTransform {
 
 # Infinite-scroll de nuestros POSTs
 
-![infinite-scroll](https://cdn.dribbble.com/users/479985/screenshots/1876839/infinite_scroll.gif)
-colocamos el infinite-scroll en nuestro html , especificamente en nuestro tab1.pages.
+    colocamos el infinite-scroll en nuestro html , especificamente en nuestro tab1.pages.
+![infinite-scroll](https://i.stack.imgur.com/7JRta.gif)
 
 ~~~typeScript
   <ion-infinite-scroll threshold="105px" (ionInfinite)="siguientes($event)">
@@ -313,7 +313,7 @@ al momento que ya se cargen todos los posts.
               
               
               if ( event ) {
-                     event.target.complete();
+                event.target.complete();
                     if( resp.posts.length === 0){
                       event.target.disabled = true;
                     }
@@ -321,6 +321,29 @@ al momento que ya se cargen todos los posts.
             });
 
   }
+~~~
+
+
+# Refresher Cargar todos los POSTs Nuevamente.
+|Refresher 1|Refresher 2| Refresher 3|
+|--------|----------|----------|
+| ![infinite-scroll](https://getcoldturkey.com/blog/wp-content/uploads/2019/02/infinite_scroll.gif) | ![infinite-scroll](https://media.giphy.com/media/NGEthFCIymRGg/giphy.gif) | ![infinite-scroll](https://i1.wp.com/ionicacademy.com/wp-content/uploads/2019/06/ionic-4-infinite-scroll.gif?fit=172%2C300&ssl=1)
+|
+
+
+
+### La actualización proporciona la funcionalidad de extracción para actualizar en un componente de contenido. El patrón de extracción para actualizar permite al usuario desplegar una lista de datos usando la función táctil para recuperar más datos.
+
+### Los datos deben modificarse durante los eventos de salida del actualizador. Una vez que la operación asíncrona se ha completado y la actualización debe finalizar, llame a complete () en el programa de actualización.
+
+## Uso de Android
+### El uso del actualizador de iones nativo de MD requiere establecer la propiedad pullIcon en el contenido del actualizador de iones en el valor de uno de los hilanderos disponibles. Consulte la ***documentación*** de la hilatura iónica para conocer los valores aceptados. pullIcon tiene como valor predeterminado la rueda giratoria circular en MD.
+
+
+~~~typeScript
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 ~~~
 
 

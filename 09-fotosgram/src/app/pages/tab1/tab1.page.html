@@ -12,6 +12,9 @@
 
 <ion-content [fullscreen]="true" color="light">
     <!--Refresher-->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" [disabled]="!scrollhabilidado">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
     <!--posts-->
     <app-posts [posts]="posts"></app-posts>

@@ -11,6 +11,8 @@ export class Tab1Page implements OnInit {
 
   posts: Post[] =[] ;
 
+  scrollhabilidado = true;
+
   constructor( private postsServices: PostsService) {}
 
 
@@ -19,21 +21,31 @@ export class Tab1Page implements OnInit {
   }
 
 
-  siguientes( event? ){
-    this.postsServices.getPosts()
+  siguientes( event? , pull: boolean = false){
+
+      if(pull){
+        this.scrollhabilidado =true;
+        this.posts = [];
+      }
+
+    this.postsServices.getPosts( pull )
             .subscribe( resp => {
               console.log(resp);
               this.posts.push(...resp.posts);
-              
-              
+
               if ( event ) {
                      event.target.complete();
                     if( resp.posts.length === 0){
-                      event.target.disabled = true;
+                      this.scrollhabilidado =false;
                     }
               }   
             });
 
   }
+
+  doRefresh( event ) {
+    this.siguientes( event, true);
+  }
+
 
 }
