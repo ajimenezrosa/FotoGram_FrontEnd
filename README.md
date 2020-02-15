@@ -322,6 +322,7 @@ al momento que ya se cargen todos los posts.
 
   }
 ~~~
+---
 
 
 # Refresher Cargar todos los POSTs Nuevamente.
@@ -334,7 +335,7 @@ al momento que ya se cargen todos los posts.
 
 ### La actualización proporciona la funcionalidad de extracción para actualizar en un componente de contenido. El patrón de extracción para actualizar permite al usuario desplegar una lista de datos usando la función táctil para recuperar más datos.
 
-### Los datos deben modificarse durante los eventos de salida del actualizador. Una vez que la operación asíncrona se ha completado y la actualización debe finalizar, llame a complete () en el programa de actualización.
+### Los datos deben modificarse durante los eventos de salida del actualizador. Una vez que la operación asíncrona se ha completado y la actualización debe finalizar, llame a complete() en el programa de actualización.
 
 ## Uso de Android
 ### El uso del actualizador de iones nativo de MD requiere establecer la propiedad pullIcon en el contenido del actualizador de iones en el valor de uno de los hilanderos disponibles. Consulte la ***documentación*** de la hilatura iónica para conocer los valores aceptados. pullIcon tiene como valor predeterminado la rueda giratoria circular en MD.
@@ -346,4 +347,38 @@ al momento que ya se cargen todos los posts.
   </ion-refresher>
 ~~~
 
+### El codigo que colocaremos en tab1.page.ts  se veria de la siguiente forma.
 
+~~~typeScript
+  siguientes( event? , pull: boolean = false){
+
+      if(pull){
+        this.scrollhabilidado =true;
+        this.posts = [];
+      }
+
+    this.postsServices.getPosts( pull )
+            .subscribe( resp => {
+              console.log(resp);
+              this.posts.push(...resp.posts);
+
+              if ( event ) {
+                     event.target.complete();
+                    if( resp.posts.length === 0){
+                      this.scrollhabilidado =false;
+                    }
+              }   
+            });
+
+  }
+
+  doRefresh( event ) {
+    this.siguientes( event, true);
+  }
+~~~
+ 
+
+ ### tambien nos compete hacer modificaciones en nuestro Servicio para que acepte la varible **pull** de tipo *boolean* .
+
+
+ ---
