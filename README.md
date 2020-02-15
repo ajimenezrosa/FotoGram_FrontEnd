@@ -128,3 +128,65 @@ lo cual permite que nuestra aplicacion se adapte a los diferentes componentes.
 
 -------
 
+# PostComponents HTML de un post
+
+procedremos disenar el html de nuestro post
+esto lo haremos en nuestro Post.components.html 
+agregaremos los componentes para que nuestro pos se mire tal cual queremos
+
+~~~typeScript
+
+
+<div class="post">
+
+<ion-item line="none" >
+
+  <ion-avatar slot="start">
+      <img src="../../../assets/avatars/{{post.usuario.avatar}}" alt="AvatarImg">
+  </ion-avatar>
+
+    <ion-label>
+        <h2> {{ post.usuario.nombre }}</h2>
+        <h4>{{ post.usuario.email }}</h4>
+    </ion-label>
+
+</ion-item>
+
+    <ion-slides>
+        <ion-slide>
+            <img src="../../../assets/perro-1.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+            <img src="../../../assets/perro-2.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+            <img src="../../../assets/perro-3.jpg" alt="">
+        </ion-slide>
+    </ion-slides>
+
+  <!--mapas-->
+
+  <ion-item line="none">
+      
+        <ion-icon slot="start" name="heart-outline"></ion-icon>
+        <ion-icon slot="end" name="bookmark"></ion-icon>
+  </ion-item>
+
+
+    <ion-item line="none">
+        <ion-label text-wrap>
+            {{ post.mensaje }}   
+        </ion-label>
+    </ion-item>
+
+
+</div>
+~~~
+
+### Como podran notar el componente que carga nuestras imagenes aun esta fijo con, es decir no carga imagenes desde nuestro servico.
+
+### Ya nos ocuparemos de esto en mas adelante. por ahora lo que nos compete hacer configurar nuesta post.comsponent.html para hacer que nuestro vista sea un poco mas agradable al usuario.
+
+---
+![imagenredes1](https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBVM9lW.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f)
+# 
