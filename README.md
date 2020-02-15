@@ -238,13 +238,15 @@ Nuestro codigo quedaria como se describe a continuacion.
 ~~~
 
 
-# DomSanitizer Pipe , colocar imagenes en el background del Slide 
+# DomSanitizer Pipe , colocar imagenes en el background del Slide. 
+
+![socialmedioPiterQiut](https://cdn.dribbble.com/users/1528591/screenshots/5276854/artboard_2x_4x.png)
 
 ### En este punto colocaremos el nuestras imagenes en el Background de los Slides, pero si intentamos colocarlos directamente nuestra aplicacion los vera como una falla de seguridad, ***En realidad es una falla de seguridad, no debemos hacerlo de forma directa*** .
 
-### a continuacion mostraremos como lo hicimos.123
+### a continuacion mostraremos como lo hicimos.
 
-## creacion de Dom-sanitizer.pipe.123
+## creacion de Dom-sanitizer.pipe.
 ### mostramos el codigo a continuacion , es realmente facil , solo tomamos una imagen como un string y lo pasamos por la clase DomSanitizerPipe, metodo bypassSecurityTrustStyle.
 
 ~~~typeScript
@@ -270,7 +272,7 @@ export class DomSanitizerPipe implements PipeTransform {
 
 ~~~
 
-## modificaion de nuestros Slide de imagenes.123
+## modificaion de nuestros Slide de imagenes.
 
 ### Ahora podemos pasar nuestras imagenes a travez de un pipe, para que nuestra aplicacion las muestre como seguras.  modificaremos nuestros post para colocar el pidpe ya creado.
 
@@ -282,5 +284,43 @@ export class DomSanitizerPipe implements PipeTransform {
 ~~~
 
 ---
+
+
+# Infinite-scroll de nuestros POSTs
+
+![infinite-scroll](https://cdn.dribbble.com/users/479985/screenshots/1876839/infinite_scroll.gif)
+colocamos el infinite-scroll en nuestro html , especificamente en nuestro tab1.pages.
+
+~~~typeScript
+  <ion-infinite-scroll threshold="105px" (ionInfinite)="siguientes($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+~~~
+
+creamos un evento para llamar que sea llamado desde nuestro infinite-scroll
+el mismo se dentendra al momento que no existan mas posts que cargar.123
+
+para esto cambiamos el estatus al target con la instuccion ***event.target.disabled = true;***
+al momento que ya se cargen todos los posts.
+
+~~~typeScript
+  siguientes( event? ){
+    this.postsServices.getPosts()
+            .subscribe( resp => {
+              console.log(resp);
+              this.posts.push(...resp.posts);
+              
+              
+              if ( event ) {
+                     event.target.complete();
+                    if( resp.posts.length === 0){
+                      event.target.disabled = true;
+                    }
+              }   
+            });
+
+  }
+~~~
 
 
