@@ -5,7 +5,7 @@
     
     <ion-slide>
 
-      <form ngSubmit= "Login( flogin )" #flogin="ngForm">
+      <form>
         <ion-grid fixed>
 
           <ion-row>
@@ -67,30 +67,23 @@
 
             <ion-row>
             <ion-col>
-                <ion-slides  [options]="avatarSlide">
-                <ion-slide *ngFor="let Avatar of avatars">
+                <ion-slides>
+                <ion-slide *ngFor="let avatar of [1,1,1,1,1,1,1]">
                     <ion-img class="pick-avatar" 
-                            src="/assets/avatars/{{ Avatar.img }}"
-                                  [ngClass]=" {'pick-avatar-seleccionado': Avatar.seleccionado}"
-                                  (click)="seleccionarAvatar( Avatar )"></ion-img>
-
+                            src="/assets/avatars/av-1.png"></ion-img>
                 </ion-slide>
-                
-                  <ion-slide style="background-image: url(/../../www/img/fondo.png)">
-                    <h2>End</h2>
-                  </ion-slide>
                 </ion-slides>
             </ion-col>
             </ion-row>
         
-            <form ngSubmit= "registro( fregistro )" #fregistro="ngForm">
+            <form>
                 <ion-row>
                     <ion-col>
                         
                         <ion-list>
                             
                             <ion-item>
-                            <ion-label>Email***</ion-label>
+                            <ion-label>Email</ion-label>
                             <ion-input name="email" 
                                         type="email"
                                         required></ion-input>
