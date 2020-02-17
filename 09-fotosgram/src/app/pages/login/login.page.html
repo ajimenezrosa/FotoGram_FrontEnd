@@ -1,7 +1,7 @@
 <ion-content>
 
 
-  <ion-slides class="mainSlide">
+  <ion-slides class="mainSlide" #slidePrincipal>
     
     <ion-slide>
 
@@ -90,7 +90,7 @@
                         <ion-list>
                             
                             <ion-item>
-                            <ion-label>Email***</ion-label>
+                            <ion-label>Email</ion-label>
                             <ion-input name="email" 
                                         type="email"
                                         required></ion-input>
@@ -148,7 +148,8 @@
                       expand="full"
                       size="small"
                       fill="outline"
-                      color="tertiary">
+                      color="tertiary"
+                    (click)="mostrarLogin()">
             Ingresar
           </ion-button>
       </ion-col>
@@ -158,7 +159,8 @@
                     expand="full"
                     size="small"
                     fill="outline"
-                    color="tertiary">
+                    color="tertiary"
+                    (click)="mostrarRegistro()">
           Registrarme
         </ion-button>
       </ion-col>

@@ -390,3 +390,248 @@ al momento que ya se cargen todos los posts.
 | ![infinite-scroll](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSGS-6IOKl1tw7S6HENgjMcoofo-JSEfx4wAbyaNkeYt5FdkQ8I) | ![infinite-scroll](https://camo.githubusercontent.com/267be5faf0bb30730516cd0047cbc2ddc7a627b1/687474703a2f2f7777772e616e64726f69647475746f7269616c736875622e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f31312f62373736626639652d363537632d346331662d623435322d6437653761323936363630305f6e65772e706e67) | ![infinite-scroll](https://androidsubway.files.wordpress.com/2016/04/login-design6.png?w=958)
 |
 ----
+
+### A continuacion  mostraremos las clases utilizadas para crear nuestra pantalla de login.
+
+### esta pantalla continene ademas de un login una seccion de registro en la cual el usuario registrara nuevas cuentas utilizando su correo electronico como llave primaria.
+
+
+
+Anexo el codigo que contiene nuestra pantalla de login. el mismo tiene.
+~~~typeScript
+<ion-content>
+
+
+  <ion-slides class="mainSlide">
+    
+    <ion-slide>
+
+      <form ngSubmit= "Login( flogin )" #flogin="ngForm">
+        <ion-grid fixed>
+
+          <ion-row>
+            <ion-col>
+              <img src="/assets/avatars/av-1.png">
+            </ion-col>
+          </ion-row>
+        
+          <ion-row>
+            <ion-col>
+              
+                <ion-list>
+                  
+                  <ion-item>
+                    <ion-label>Email</ion-label>
+                    <ion-input name="email"
+                                type="email"
+                                required></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label>Password</ion-label>
+                    <ion-input name="password"
+                                type="password"
+                                required></ion-input>
+                  </ion-item>
+
+                </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit"
+                          color="tertiary"
+                          shape="round">
+                Login
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </form>
+    
+
+
+    </ion-slide>
+
+    <ion-slide>
+
+      
+      <ion-grid fixed>
+
+            <ion-row>
+            <ion-col>
+                <h3>Seleccione Avatar</h3>
+            </ion-col>
+            </ion-row>
+
+            <ion-row>
+            <ion-col>
+                <ion-slides  [options]="avatarSlide">
+                <ion-slide *ngFor="let Avatar of avatars">
+                    <ion-img class="pick-avatar" 
+                            src="/assets/avatars/{{ Avatar.img }}"
+                                  [ngClass]=" {'pick-avatar-seleccionado': Avatar.seleccionado}"
+                                  (click)="seleccionarAvatar( Avatar )"></ion-img>
+
+                </ion-slide>
+                
+                  <ion-slide style="background-image: url(/../../www/img/fondo.png)">
+                    <h2>End</h2>
+                  </ion-slide>
+                </ion-slides>
+            </ion-col>
+            </ion-row>
+        
+            <form ngSubmit= "registro( fregistro )" #fregistro="ngForm">
+                <ion-row>
+                    <ion-col>
+                        
+                        <ion-list>
+                            
+                            <ion-item>
+                            <ion-label>Email***</ion-label>
+                            <ion-input name="email" 
+                                        type="email"
+                                        required></ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                            <ion-label>Nombre</ion-label>
+                            <ion-input name="nombre"
+                                        type="text"
+                                        required></ion-input>
+                            </ion-item>
+
+                            <ion-item>
+                            <ion-label>Password</ion-label>
+                            <ion-input name="password"
+                                        type="password"
+                                        required></ion-input>
+                            </ion-item>
+
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+                
+                <ion-row>
+                <ion-col>
+                    <ion-button type="submit"
+                                color="tertiary"
+                                shape="round">
+                        Crear usuario
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            
+            </form>
+        </ion-grid>
+  
+  
+      </ion-slide>
+
+
+  </ion-slides>
+
+
+
+</ion-content>
+
+
+<ion-footer no-border>
+  <ion-toolbar>
+    
+    <ion-row>
+
+      <ion-col>
+          <ion-button shape="round"
+                      expand="full"
+                      size="small"
+                      fill="outline"
+                      color="tertiary">
+            Ingresar
+          </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-button shape="round"
+                    expand="full"
+                    size="small"
+                    fill="outline"
+                    color="tertiary">
+          Registrarme
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+
+
+  </ion-toolbar>
+</ion-footer>
+~~~
+
+
+anexamos los css colocados en nuestra pagine de login
+
+
+
+### Nuestro inicio de sesión contiene más estilo.
+### Esto se declarará en la hoja de estilo.
+
+### Echa un vistazo al código.
+~~~css
+
+
+.mainSlide, .mainSlide ion-slide {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 120px;
+}
+
+.pick-avatar {
+  width: 80px;
+  opacity: 0.3;
+}
+
+.pick-avatar-seleccionado {
+  transition: opacity 0.5s linear;
+  opacity: 1 !important;
+}
+~~~
+---
+
+# Aplicación de diseño de bloqueo y movimiento.
+
+
+Por el momento debemos hacer que nuestras diapositivas se comporten como si fueran dos pantallas independientes.
+
+Esto es más que nada para un aspecto visual y estético, para esto aplicaremos el siguiente código en nuestro *** login.page.ts ***
+~~~typescript
+  @ViewChild('slidePrincipal', { static: true})  slides: IonSlides;
+~~~
+
+
+También debemos crear los siguientes eventos para activar el Slide a nuestra voluntad.
+
+~~~typescript
+
+  mostrarRegistro() {
+
+      this.slides.lockSwipes(false);
+      this.slides.slideTo(1);
+      this.slides.lockSwipes(true);
+    }
+    
+    mostrarLogin() {
+      this.slides.lockSwipes(false);
+      this.slides.slideTo(0);
+      this.slides.lockSwipes(true);
+   }
+
+~~~
+
