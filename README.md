@@ -387,7 +387,7 @@ al momento que ya se cargen todos los posts.
 
 |Refresher 1|Refresher 2| Refresher 3|
 |--------|----------|----------|
-| ![infinite-scroll](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSGS-6IOKl1tw7S6HENgjMcoofo-JSEfx4wAbyaNkeYt5FdkQ8I) | ![infinite-scroll](https://camo.githubusercontent.com/267be5faf0bb30730516cd0047cbc2ddc7a627b1/687474703a2f2f7777772e616e64726f69647475746f7269616c736875622e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f31312f62373736626639652d363537632d346331662d623435322d6437653761323936363630305f6e65772e706e67) | ![infinite-scroll](https://androidsubway.files.wordpress.com/2016/04/login-design6.png?w=958)
+| ![infinite-scroll](https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSGS-6IOKl1tw7S6HENgjMcoofo-JSEfx4wAbyaNkeYt5FdkQ8I) | ![infinite-scroll](https://camo.githubusercontent.com/267be5faf0bb30730516cd0047cbc2ddc7a627b1/687474703a2f2f7777772e616e64726f69647475746f7269616c736875622e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031362f31312f62373736626639652d363537632d346331662d623435322d6437653761323936363630305f6e65772e706e67) | ![infinite-scroll](https://lh3.googleusercontent.com/hqLKz_2UVubHGyMAqPubgw5P0mJ46zDKrUkSIgwCtceO3Vwmc6iCjEvCnX6c6qVX26_fCDGHBFkpmJNCqyIAKgikq4UJMdH0la9qvQ=w196)
 |
 ----
 
