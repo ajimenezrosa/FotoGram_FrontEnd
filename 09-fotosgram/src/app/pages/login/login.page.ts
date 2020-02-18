@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IonSlides } from '@ionic/angular';
+import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
@@ -59,21 +59,26 @@ avatarSlide = {
     password: '123456'
   };
 
-  constructor( private usuarioService: UsuarioService) { }
+  constructor( private usuarioService: UsuarioService,
+               private navCtrl: NavController) { }
 
   ngOnInit() {
     this.slides.lockSwipes(true);
   }
 
 
-  Login( flogin: NgForm ) {
+ async Login( flogin: NgForm ) {
 
     if (flogin.invalid ) { return; }
 
-    this.usuarioService.login( this.loginuser.email, this.loginuser.password );
+    const valido = await  this.usuarioService.login( this.loginuser.email, this.loginuser.password );
 
-      // console.log(flogin.valid);
-      // console.log(this.loginuser);
+    if (valido) {
+        // navegar al tabs
+        this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+      } else {
+        // Mostrar alerta de usuario y contrasena no correctos
+      }
 
   }
 
@@ -85,7 +90,7 @@ avatarSlide = {
 
   seleccionarAvatar( avatar ) {
       this.avatars.forEach( av => av.seleccionado = false);
-      avatar.seleccionado = true;    
+      avatar.seleccionado = true;
   }
 
 
