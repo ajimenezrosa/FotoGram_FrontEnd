@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { UiserviceService } from '../../services/uiservice.service';
+import { Usuario } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -60,6 +61,14 @@ avatarSlide = {
     password: '123456'
   };
 
+
+  registerUser: Usuario = {
+      email: 'jimenezrosa@gmail.com',
+      password: '123456',
+      nombre: 'Jimenezrosa',
+      avatar: 'av-1.png'
+  };
+
   constructor( private usuarioService: UsuarioService,
                private navCtrl: NavController,
                private alertCtrl: UiserviceService) { }
@@ -86,8 +95,20 @@ avatarSlide = {
   }
 
 
-  registro( fregistro: NgForm ) {
-    console.log(fregistro.valid);
+    async  registro( fregistro: NgForm ) {
+
+    if ( fregistro.invalid) { return ;}
+
+    const valido = await this.usuarioService.registro(this.registerUser);
+
+    if (valido) {
+      // navegar al tabs
+      this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+    } else {
+      // Mostrar alerta de usuario y contrasena no correctos
+      this.alertCtrl.AlertaInformativa('Ese correo electronico ya existe.');
+    }
+
   }
 
 

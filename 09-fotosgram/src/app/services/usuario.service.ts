@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { resolve } from 'url';
+import { Usuario } from '../interfaces/interfaces';
+import { promise } from 'protractor';
 
  const url = environment.URL;
 
@@ -40,6 +42,28 @@ export class UsuarioService {
 
     }
 
+
+    registro( usuario: Usuario )  {
+
+      return new Promise( resolve => {
+        this.http.post(`${url}/user/create`, usuario )
+              .subscribe( resp => {
+                console.log(resp);
+
+                if (resp['ok'] ) {
+                  this.guardarToken( resp['token']  );
+                  resolve(true) ;
+                } else {
+                  this.Token = null;
+                  this.storage.clear();
+                  resolve(false);
+                }
+
+
+              });
+      });
+
+    }
 
 
    async guardarToken(token: string) {
