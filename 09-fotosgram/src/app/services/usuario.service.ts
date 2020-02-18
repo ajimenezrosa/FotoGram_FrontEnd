@@ -20,11 +20,11 @@ export class UsuarioService {
     login(email: string, password: string){
         const data = { email, password } ;
 
-      return new Promise( resolve => {
+        return new Promise( resolve => {
         this.http.post(`${url}/user/login`, data)
                 .subscribe( resp => {
                   console.log(resp);
-  
+
                   if (resp['ok'] ) {
                     this.guardarToken( resp['token']  );
                     resolve(true) ;
@@ -33,7 +33,7 @@ export class UsuarioService {
                     this.storage.clear();
                     resolve(false);
                   }
-  
+
                 });
       });
 
