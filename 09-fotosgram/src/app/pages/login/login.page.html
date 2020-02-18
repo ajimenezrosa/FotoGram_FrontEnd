@@ -23,6 +23,7 @@
                     <ion-label>Email</ion-label>
                     <ion-input name="email"
                                 type="email"
+                              [(ngModel)]="loginuser.email"
                                 required></ion-input>
                   </ion-item>
 
@@ -30,6 +31,7 @@
                     <ion-label>Password</ion-label>
                     <ion-input name="password"
                                 type="password"
+                              [(ngModel)]="loginuser.password"
                                 required></ion-input>
                   </ion-item>
 
@@ -41,6 +43,7 @@
             <ion-col>
               <ion-button type="submit"
                           color="tertiary"
+                          (click)="Login(flogin)"
                           shape="round">
                 Login
               </ion-button>

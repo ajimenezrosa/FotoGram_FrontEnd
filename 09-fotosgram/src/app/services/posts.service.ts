@@ -15,7 +15,7 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
 
-  getPosts( pull?: boolean = false) {
+  getPosts( pull: boolean = false) {
 
     if ( pull )
     {  this.paginaPosts = 0;  }

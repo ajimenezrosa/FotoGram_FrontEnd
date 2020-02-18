@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IonSlides } from '@ionic/angular';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -53,7 +54,12 @@ avatarSlide = {
 };
 
 
-  constructor() { }
+  loginuser = {
+    email: 'Hector.ortiz@INABIMA.GOB.DO',
+    password: '123456'
+  };
+
+  constructor( private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.slides.lockSwipes(true);
@@ -61,7 +67,14 @@ avatarSlide = {
 
 
   Login( flogin: NgForm ) {
-      console.log(flogin.valid);
+
+    if (flogin.invalid ) { return; }
+
+    this.usuarioService.login( this.loginuser.email, this.loginuser.password );
+
+      // console.log(flogin.valid);
+      // console.log(this.loginuser);
+
   }
 
 

@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -17,6 +19,7 @@ import { AppComponent } from './app.component';
   imports: [BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
+    IonicStorageModule.forRoot(),
     AppRoutingModule],
   providers: [
     StatusBar,
