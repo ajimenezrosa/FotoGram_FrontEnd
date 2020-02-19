@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../environments/environment';
 import { resolve } from 'url';
 import { Usuario } from '../interfaces/interfaces';
 import { promise } from 'protractor';
+import { NavController } from '@ionic/angular';
 
- const url = environment.URL;
+const url = environment.URL;
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,14 @@ import { promise } from 'protractor';
 export class UsuarioService {
 
   Token: string = null;
+  usuario: Usuario = {};
 
   constructor( private http: HttpClient,
-               private storage: Storage) { }
+               private storage: Storage,
+               private navCtrl: NavController) { }
 
 
-    login(email: string, password: string){
+    login(email: string, password: string) {
         const data = { email, password } ;
 
         return new Promise( resolve => {
@@ -69,6 +72,46 @@ export class UsuarioService {
    async guardarToken(token: string) {
       this.Token = token;
       await this.storage.set('token', token);
+    }
+
+
+
+     async cargarToken() {
+          this.Token = await this.storage.get('token')
+      }
+
+
+
+    async validaToken(): Promise<boolean> {
+
+     await this.cargarToken();
+
+     if (!this.Token) {
+       this.navCtrl.navigateRoot('/login');
+       return Promise.resolve(false); }
+
+     return new Promise( resolve => {
+
+        const headers = new HttpHeaders({
+           'x-token': this.Token
+        });
+
+        this.http.get(`${url}/user/` ,  { headers})
+        .subscribe( resp => {
+          
+          if ( resp['ok']) {
+            this.usuario = resp['usuario'];
+            resolve(true);
+
+                      }
+                      else {
+                        this.navCtrl.navigateRoot('/login');
+                        resolve(false);
+                      }
+                    });
+      });
+
+
     }
 
 
