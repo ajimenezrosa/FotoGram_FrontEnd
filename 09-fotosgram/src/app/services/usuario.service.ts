@@ -80,6 +80,7 @@ export class UsuarioService {
       if (!this.usuario._id) {
         this.validaToken();
       }
+
       return { ...this.usuario } ;
     }
 
@@ -121,5 +122,28 @@ export class UsuarioService {
 
     }
 
+
+
+
+    actualizarUsuario(usuario: Usuario) {
+      const headers = new HttpHeaders({
+        'x-token': this.Token
+      });
+
+      return new Promise( resolve => {
+
+        this.http.post(`${url}/user/update`, usuario, { headers })
+              .subscribe(resp => {
+                if (resp['ok']) {
+                  this.guardarToken(resp['token']);
+                  resolve(true);
+                } else
+                {
+                  resolve(false);
+                }
+              })
+      });
+
+    }
 
 }

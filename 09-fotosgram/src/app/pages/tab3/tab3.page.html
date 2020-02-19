@@ -31,7 +31,7 @@
 
   <app-avatar-selector></app-avatar-selector>
 
-  <form>
+  <form (ngSubmit)="actualizar( fActulizar)" #fActulizar>
       <ion-row>
         <ion-col>
           
@@ -60,7 +60,8 @@
       
       <ion-row>
         <ion-col text-center>
-          <ion-button type="submit"
+          <ion-button class="margin-actualizar" 
+                      type="submit"
                       color="tertiary"
                       shape="round">
           Actualizar
