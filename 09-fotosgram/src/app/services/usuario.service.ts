@@ -76,6 +76,13 @@ export class UsuarioService {
 
 
 
+    getUsuario() {
+      if (!this.usuario._id) {
+        this.validaToken();
+      }
+      return { ...this.usuario } ;
+    }
+
      async cargarToken() {
           this.Token = await this.storage.get('token')
       }
