@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { RespuestaPosts } from '../interfaces/interfaces';
+import { RespuestaPosts, Post } from '../interfaces/interfaces';
 import { UsuarioService } from './usuario.service';
 
 const url = environment.URL;
@@ -12,6 +12,8 @@ const url = environment.URL;
 export class PostsService {
 
   paginaPosts = 0;
+
+  nuevoPost = new EventEmitter<Post>();
 
   constructor(private http: HttpClient,
               private usuarioService: UsuarioService) { }
@@ -32,10 +34,16 @@ export class PostsService {
         'x-token': this.usuarioService.Token
       });
 
-      this.http.post(`${url}/post`, post , { headers })
-                  .subscribe( resp => {
-                    console.log(resp);
-                  });
+      return new Promise( resolve => {
+
+        this.http.post(`${url}/post`, post , { headers })
+                    .subscribe( resp => {
+                      this.nuevoPost.emit( resp['post']);
+                      resolve(true);
+                    });
+
+      });
+
 
   }
 

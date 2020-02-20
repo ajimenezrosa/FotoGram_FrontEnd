@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -17,12 +18,28 @@ export class Tab2Page {
   };
 
 
-  constructor( private postsService: PostsService) {}
+  constructor( private postsService: PostsService,
+               private route: Router) {}
 
 
-  crearPost() {
+ async crearPost() {
       // console.log(this.post);
-      this.postsService.crearPost( this.post );
+     const creado = await this.postsService.crearPost( this.post );
+
+     // Inicializamos el Objeto vacio
+     this.post = {
+      mensaje: '',
+      coords: null,
+      posicion: false
+    };
+
+    // navegamos a tab1 este es a nuestra pantalla de post
+     if (creado) {
+
+       this.postsService.getPosts();
+      this.route.navigateByUrl('/main/tabs/tab1');
+    }
+
 
   }
 }
