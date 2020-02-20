@@ -634,4 +634,28 @@ También debemos crear los siguientes eventos para activar el Slide a nuestra vo
    }
 
 ~~~
+---
+# Crear un Nuevo Registro de POST en la base de datos.
 
+# Insertar Post en nuesto BackEnd.123
+### Publicaremos las publicaciones en nuestro backEnd.
+### para esto usaremos el servicio Post y crearemos el método createPost ()
+
+~~~typescript
+  crearPost( post) {
+      const headers = new HttpHeaders({
+        'x-token': this.usuarioService.Token
+      });
+
+      this.http.post(`${url}/post`, post , { headers })
+                  .subscribe( resp => {
+                    console.log(resp);
+                  });
+  }
+~~~
+
+este servicio lo tenemos en nuestro Backend , el mismo insertar los post en nuestras bases de datos.123
+
+solo nos resta llamar este servicio y enviarle el objeto post.
+
+-------

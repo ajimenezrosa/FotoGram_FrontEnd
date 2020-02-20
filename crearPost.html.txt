@@ -6,7 +6,6 @@
 
     <ion-buttons slot="end">
       <ion-button (click)="crearPost()"
-                  [disabled]="post.mensaje.length<1"
                   color="primary">
         Compartir
       </ion-button>
@@ -21,7 +20,7 @@
     
     <ion-item>
       <ion-label position="floating">Mensaje</ion-label>
-      <ion-textarea [(ngModel)]="post.mensaje" ></ion-textarea>
+      <ion-textarea></ion-textarea>
     </ion-item>
 
     <ion-list>
