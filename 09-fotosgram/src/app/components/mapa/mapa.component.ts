@@ -11,7 +11,7 @@ declare var mapboxgl: any;
 export class MapaComponent implements OnInit {
 
   @Input() coords: string;
-  @ViewChild('mapa') mapa;
+  @ViewChild('mapa', {static: true }) mapa;
 
 
   constructor() { }
